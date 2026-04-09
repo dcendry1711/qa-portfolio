@@ -41,6 +41,7 @@ test("e2e test - sauceDemo", async ({ page }) => {
     checkoutFormData.lastName,
     checkoutFormData.postalCode,
   );
+  await checkout.continueCheckout();
   await checkout.finishCheckout();
 
   await expect(summaryPage.summaryPageHeader).toBeVisible();

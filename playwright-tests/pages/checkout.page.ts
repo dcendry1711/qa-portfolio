@@ -22,6 +22,10 @@ export class checkoutPage {
     await this.continueBtn.click();
   }
 
+  async continueCheckout() {
+    await this.continueBtn.click();
+  }
+
   async finishCheckout() {
     await this.finishBtn.click();
   }
