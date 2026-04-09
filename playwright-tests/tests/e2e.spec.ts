@@ -7,8 +7,7 @@ import { CartPage } from "../pages/cart.page";
 import { checkoutPage } from "../pages/checkout.page";
 import { SummaryPage } from "../pages/summary.page";
 
-test.only("e2e test - sauceDemo", async ({ page }) => {
-
+test("e2e test - sauceDemo", async ({ page }) => {
   const loginPage = new LoginPage(page);
   const productsListPage = new ProductsListPage(page);
   const cartPage = new CartPage(page);
@@ -30,6 +29,6 @@ test.only("e2e test - sauceDemo", async ({ page }) => {
     checkoutFormData.postalCode,
   );
   await checkout.finishCheckout();
-  
+
   await summaryPage.closeSummary();
 });

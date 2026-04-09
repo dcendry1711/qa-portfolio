@@ -1,7 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
 export class LoginPage {
-    
   usernameInput: Locator;
   passwordInput: Locator;
   loginButton: Locator;
