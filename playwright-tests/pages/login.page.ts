@@ -6,6 +6,7 @@ export class LoginPage {
   passwordInput: Locator;
   loginButton: Locator;
   inventoryContainer: Locator;
+  errorMsg: Locator;
 
   async navigate() {
     await this.page.goto("/");
@@ -24,5 +25,6 @@ export class LoginPage {
     this.inventoryContainer = this.page.locator(
       '[data-test="inventory-container"]',
     );
+    this.errorMsg = this.page.locator('[data-test="error"]');
   }
 }
