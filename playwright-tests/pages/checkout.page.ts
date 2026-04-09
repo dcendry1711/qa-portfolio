@@ -1,6 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 
 export class checkoutPage {
+  checkoutContainer: Locator;
   firstName: Locator;
   lastName: Locator;
   postalCode: Locator;
@@ -26,6 +27,7 @@ export class checkoutPage {
   }
 
   constructor(private page: Page) {
+    this.checkoutContainer = page.locator(".checkout_info");
     this.firstName = page.locator('[data-test="firstName"]');
     this.lastName = page.locator('[data-test="lastName"]');
     this.postalCode = page.locator('[data-test="postalCode"]');

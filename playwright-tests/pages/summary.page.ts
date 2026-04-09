@@ -10,7 +10,7 @@ export class SummaryPage {
 
   constructor(private page: Page) {
     this.summaryPageHeader = page.locator(
-      '[data-test="checkout-summary-header"]',
+      '[data-test="complete-header"]',
     );
     this.closeSummaryPage = page.locator('[data-test="back-to-products"]');
   }
