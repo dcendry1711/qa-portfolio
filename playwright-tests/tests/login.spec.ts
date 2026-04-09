@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
 import { userLoginData } from "../data/loginData.data";
 
-test.describe("E2E Tests - sauceDemo", () => {
+test.describe("Login test cases - sauceDemo", () => {
     
   let loginPage: LoginPage;
 
