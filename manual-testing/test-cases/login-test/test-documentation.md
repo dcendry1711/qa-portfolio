@@ -38,7 +38,9 @@ The purpose of this testing effort is to verify the correctness and reliability 
 |---------------------|---------------|--------------------------|
 | standard_user       | secret_sauce  | Valid user               |
 | locked_out_user     | secret_sauce  | Locked user              |
-| problem_user        | secret_sauce  | User with UI issues      |
+| problem_user        | secret_sauce  | User with bugs in order process      |
+| performance_glitch_user        | secret_sauce  | User with problems during login process      |
+| visual_user        | secret_sauce  | User with ui issues     |
 | invalid_user        | secret_sauce  | Invalid username         |
 | standard_user       | wrong_pass    | Invalid password         |
 
