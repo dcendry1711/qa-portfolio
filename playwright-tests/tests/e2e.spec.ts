@@ -7,7 +7,7 @@ import { CartPage } from "../pages/cart.page";
 import { checkoutPage } from "../pages/checkout.page";
 import { SummaryPage } from "../pages/summary.page";
 
-test.only("e2e test - complete order process", async ({ page }) => {
+test("e2e test - complete order process", async ({ page }) => {
   const loginPage = new LoginPage(page);
   const productsListPage = new ProductsListPage(page);
   const cartPage = new CartPage(page);
