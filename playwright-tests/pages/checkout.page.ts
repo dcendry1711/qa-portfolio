@@ -19,7 +19,6 @@ export class checkoutPage {
     await this.firstName.fill(firstName);
     await this.lastName.fill(lastName);
     await this.postalCode.fill(postalCode);
-    await this.continueBtn.click();
   }
 
   async continueCheckout() {

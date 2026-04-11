@@ -11,7 +11,7 @@ test.describe("Login test cases - sauceDemo", () => {
   });
 
   test("Successful login with right credentials", async ({}) => {
-    
+
     const userLogin = userLoginData.userName;
     const userPassword = userLoginData.password;
 
@@ -29,4 +29,12 @@ test.describe("Login test cases - sauceDemo", () => {
       "Epic sadface: Username and password do not match any user in this service",
     );
   });
+
+  test("Empty login and password fields", async ({}) => {
+    await loginPage.login("", "");
+    await expect(loginPage.errorMsg).toBeVisible();
+    await expect(loginPage.errorMsg).toHaveText(
+      "Epic sadface: Username is required",
+    )
+  });  
 });
