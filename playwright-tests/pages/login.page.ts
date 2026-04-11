@@ -1,10 +1,12 @@
 import { Locator, Page } from "@playwright/test";
 
 export class LoginPage {
+  reload() {
+    throw new Error("Method not implemented.");
+  }
   usernameInput: Locator;
   passwordInput: Locator;
   loginButton: Locator;
-  inventoryContainer: Locator;
   errorMsg: Locator;
 
   async navigate() {
@@ -21,9 +23,6 @@ export class LoginPage {
     this.usernameInput = this.page.locator('[data-test="username"]');
     this.passwordInput = this.page.locator('[data-test="password"]');
     this.loginButton = this.page.locator('[data-test="login-button"]');
-    this.inventoryContainer = this.page.locator(
-      '[data-test="inventory-container"]',
-    );
     this.errorMsg = this.page.locator('[data-test="error"]');
   }
 }

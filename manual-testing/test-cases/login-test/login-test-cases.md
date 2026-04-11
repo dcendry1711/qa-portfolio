@@ -12,7 +12,7 @@
 | TC08 | Password with leading/trailing whitespace | Validation | Medium | User is on login page | 1. Enter username<br>2. Enter password with spaces<br>3. Click Login | System handles or rejects input correctly |
 | TC09 | Login with locked user | Negative | High | User is on login page | 1. Enter locked_out_user<br>2. Enter password<br>3. Click Login | Error message about locked account |
 | TC10 | Submit login using Enter key | Functional | Medium | User is on login page | 1. Enter valid credentials<br>2. Press Enter | Login is successful |
-| TC11 | Multiple login button clicks | Edge Case | Low | User is on login page | 1. Enter valid credentials<br>2. Click Login multiple times quickly | No duplicate requests or errors |
+| TC11 | Refresh after login | Session | Medium | User is logged in | 1. Refresh page | User remains logged in |
 
 ---
 

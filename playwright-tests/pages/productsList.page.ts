@@ -1,6 +1,7 @@
 import { Page, Locator } from "@playwright/test";
 
 export class ProductsListPage {
+  productsListHeader: Locator;
   addToCartBackpack: Locator;
   addToCartBoltTShirt: Locator;
   addToCartBikeLight: Locator;
@@ -17,6 +18,7 @@ export class ProductsListPage {
   }
 
   constructor(private page: Page) {
+    this.productsListHeader = page.locator('[data-test="title"]');
     this.addToCartBackpack = page.locator(
       '[data-test="add-to-cart-sauce-labs-backpack"]',
     );
