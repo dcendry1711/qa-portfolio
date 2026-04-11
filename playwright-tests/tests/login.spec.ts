@@ -11,6 +11,7 @@ test.describe("Login test cases - sauceDemo", () => {
   });
 
   test("Successful login with right credentials", async ({}) => {
+    
     const userLogin = userLoginData.userName;
     const userPassword = userLoginData.password;
 
