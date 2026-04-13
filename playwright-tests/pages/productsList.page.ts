@@ -6,8 +6,16 @@ export class ProductsListPage {
   addToCartBoltTShirt: Locator;
   addToCartBikeLight: Locator;
   moveToCart: Locator;
+  cartList: Locator;
+  itemQuantity: Locator;
+  shoppingCartBadge: Locator;
+  removeFromCartBackpackBtn: Locator;
 
-  async addProductsToCart() {
+  async add1ProductToCart() {
+    await this.addToCartBackpack.click();
+  }
+
+  async add3ProductsToCart() {
     await this.addToCartBackpack.click();
     await this.addToCartBoltTShirt.click();
     await this.addToCartBikeLight.click();
@@ -29,5 +37,11 @@ export class ProductsListPage {
       '[data-test="add-to-cart-sauce-labs-bike-light"]',
     );
     this.moveToCart = page.locator('[data-test="shopping-cart-link"]');
+    this.cartList = page.locator('[data-test="cart-list"]');
+    this.itemQuantity = page.locator('[data-test="item-quantity"]');
+    this.shoppingCartBadge = page.locator('[data-test="shopping-cart-badge"]');
+    this.removeFromCartBackpackBtn = page.locator(
+      '[data-test="remove-sauce-labs-backpack"]',
+    );
   }
 }
