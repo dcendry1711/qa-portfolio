@@ -26,7 +26,7 @@ test("e2e test - complete order process", async ({ page }) => {
   await loginPage.login(userLoginData.userName, userLoginData.password);
   await expect(productsListPage.productsListHeader).toBeVisible();
 
-  await productsListPage.addProductsToCart();
+  await productsListPage.add3ProductsToCart();
   await productsListPage.moveToCartPage();
   await expect(cartPage.cartList).toBeVisible();
 

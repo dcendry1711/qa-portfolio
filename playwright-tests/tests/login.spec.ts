@@ -104,13 +104,13 @@ test.describe("Login test cases - sauceDemo", () => {
     await loginPage.usernameInput.fill(userLogin);
     await loginPage.passwordInput.fill(userPassword);
     await loginPage.passwordInput.press("Enter");
-    await expect(page).toHaveURL(/inventory/);
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
     await expect(productsListPage.productsListHeader).toBeVisible();
   });
 
   test("TC11 - Refresh after successful login", async ({ page }) => {
     await loginPage.login(userLogin, userPassword);
-    await expect(page).toHaveURL(/inventory/);
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
     await page.reload();
     await expect(productsListPage.productsListHeader).toBeVisible();
   });

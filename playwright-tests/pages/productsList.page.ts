@@ -1,6 +1,7 @@
 import { Page, Locator } from "@playwright/test";
 
 export class ProductsListPage {
+  
   productsListHeader: Locator;
   addToCartBackpack: Locator;
   addToCartBoltTShirt: Locator;
@@ -10,6 +11,8 @@ export class ProductsListPage {
   itemQuantity: Locator;
   shoppingCartBadge: Locator;
   removeFromCartBackpackBtn: Locator;
+  removeFromCartBoltTShirtBtn: Locator;
+  removeFromCartBikeLightBtn: Locator;
 
   async add1ProductToCart() {
     await this.addToCartBackpack.click();
@@ -19,6 +22,18 @@ export class ProductsListPage {
     await this.addToCartBackpack.click();
     await this.addToCartBoltTShirt.click();
     await this.addToCartBikeLight.click();
+  }
+
+  async removeBackpackFromCart() {
+    await this.removeFromCartBackpackBtn.click();
+  }
+
+  async removeBoltTShirtFromCart() {
+    await this.removeFromCartBoltTShirtBtn.click();
+  } 
+
+  async removeBikeLightFromCart() {
+    await this.removeFromCartBikeLightBtn.click();
   }
 
   async moveToCartPage() {
@@ -43,5 +58,12 @@ export class ProductsListPage {
     this.removeFromCartBackpackBtn = page.locator(
       '[data-test="remove-sauce-labs-backpack"]',
     );
+    this.removeFromCartBoltTShirtBtn = page.locator(
+      '[data-test="remove-sauce-labs-bolt-t-shirt"]',
+    );
+    this.removeFromCartBikeLightBtn = page.locator(
+      '[data-test="remove-sauce-labs-bike-light"]',
+    );
+
   }
 }
