@@ -1,7 +1,6 @@
 # 🛒 Shopping Cart – Test Scenarios (SauceDemo)
 
-## 📌 Overview
-This document contains test scenarios for the shopping cart functionality in the SauceDemo application.  
+## 📌 Overview  
 The goal is to verify correct behavior of adding, removing, and managing products in the cart.
 
 ---
@@ -11,7 +10,6 @@ The goal is to verify correct behavior of adding, removing, and managing product
 - Cart UI behavior
 - Navigation
 - Session persistence
-- Basic security checks
 
 ---
 
