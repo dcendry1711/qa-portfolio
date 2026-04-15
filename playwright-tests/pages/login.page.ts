@@ -1,28 +1,40 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 export class LoginPage {
-  reload() {
-    throw new Error("Method not implemented.");
-  }
-  usernameInput: Locator;
-  passwordInput: Locator;
-  loginButton: Locator;
+
+  loginPageHeader: Locator;
+  usernameInputField: Locator;
+  passwordInputField: Locator;
+  loginBtn: Locator;
   errorMsg: Locator;
 
-  async navigate() {
+  async navigateToLoginPage() {
     await this.page.goto("/");
+    await expect(this.loginPageHeader).toBeVisible();
   }
 
   async login(username: string, password: string) {
-    await this.usernameInput.fill(username);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
+    await this.usernameInputField.fill(username);
+    await this.passwordInputField.fill(password);
+    await this.loginBtn.click();
+  }
+
+  async loginWithEnterKey(username: string, password: string) {
+    await this.usernameInputField.fill(username);
+    await this.passwordInputField.fill(password);
+    await this.passwordInputField.press("Enter");
+  }
+
+  async fullLoginFlow(username: string, password: string) {
+    await this.navigateToLoginPage();
+    await this.login(username, password);
   }
 
   constructor(private page: Page) {
-    this.usernameInput = this.page.locator('[data-test="username"]');
-    this.passwordInput = this.page.locator('[data-test="password"]');
-    this.loginButton = this.page.locator('[data-test="login-button"]');
+    this.loginPageHeader = this.page.locator(".login_logo");
+    this.usernameInputField = this.page.locator('[data-test="username"]');
+    this.passwordInputField = this.page.locator('[data-test="password"]');
+    this.loginBtn = this.page.locator('[data-test="login-button"]');
     this.errorMsg = this.page.locator('[data-test="error"]');
   }
 }

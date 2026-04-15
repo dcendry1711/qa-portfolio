@@ -17,5 +17,4 @@
 ---
 
 ## Notes
-- Each test case should include screenshots where possible
 - Use demo site https://www.saucedemo.com/ for reference

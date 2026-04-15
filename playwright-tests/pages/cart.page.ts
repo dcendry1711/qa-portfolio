@@ -2,16 +2,16 @@ import { Page, Locator, expect } from "@playwright/test";
 
 export class CartPage {
   cartList: Locator;
-  removeBackpack: Locator;
-  checkout: Locator;
+  removeSauceLabsBackpackBtnOnCartPage: Locator;
+  checkoutBtn: Locator;
   continueShoppingBtn: Locator;
 
-  async removeBackpackFromCart() {
-    await this.removeBackpack.click();
+  async removeBackpackFromCartOnCartPage() {
+    await this.removeSauceLabsBackpackBtnOnCartPage.click();
   }
 
   async moveToCheckout() {
-    await this.checkout.click();
+    await this.checkoutBtn.click();
     await expect(this.page).toHaveURL(/checkout-step-one.html/);
   }
 
@@ -23,9 +23,9 @@ export class CartPage {
   constructor(private page: Page) {
     this.continueShoppingBtn = page.locator('[data-test="continue-shopping"]');
     this.cartList = page.locator('[data-test="cart-list"]');
-    this.removeBackpack = page.locator(
+    this.removeSauceLabsBackpackBtnOnCartPage = page.locator(
       '[data-test="remove-sauce-labs-backpack"]',
     );
-    this.checkout = page.locator('[data-test="checkout"]');
+    this.checkoutBtn = page.locator('[data-test="checkout"]');
   }
 }
