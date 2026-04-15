@@ -5,7 +5,6 @@ The purpose of this testing effort is to verify the correctness and reliability 
 - Successful user authentication
 - Handling invalid credentials
 - Input validation
-- Basic security scenarios
 - Session behavior
 
 ---
@@ -28,7 +27,7 @@ The purpose of this testing effort is to verify the correctness and reliability 
 ## 3. Test Environment
 - **Application URL:** https://www.saucedemo.com/
 - **Browser:** Google Chrome (latest)
-- **Operating System:** Windows 10/11
+- **Operating System:** Windows 11
 
 ---
 
