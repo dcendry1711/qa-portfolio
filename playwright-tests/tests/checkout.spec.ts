@@ -26,7 +26,7 @@ test.describe("Checkout Functionality", () => {
     await cartPage.moveToCheckout();
   });
 
-  test.only("TC01 - Succesfull checkout process", async ({ page }) => {
+  test("TC01 - Succesfull checkout process", async ({ page }) => {
     await expect(page).toHaveURL(/checkout-step-one.html/);
     await expect(checkoutPage.checkoutHeaderTitle).toHaveText(
       "Checkout: Your Information",
