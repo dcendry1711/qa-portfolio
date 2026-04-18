@@ -2,16 +2,16 @@ import { test, expect } from "@playwright/test";
 import { userLoginData } from "../data/loginData.data";
 import { checkoutFormData } from "../data/checkoutForm.data";
 import { LoginPage } from "../pages/login.page";
-import { InventoryPage } from "../pages/productsList.page";
+import { InventoryPage } from "../pages/inventory.page";
 import { CartPage } from "../pages/cart.page";
-import { checkoutPage } from "../pages/checkout.page";
+import { CheckoutPage } from "../pages/checkout.page";
 import { SummaryPage } from "../pages/summary.page";
 
 test("E2E 01 - complete order process", async ({ page }) => {
   const loginPage = new LoginPage(page);
   const inventoryPage = new InventoryPage(page);
   const cartPage = new CartPage(page);
-  const checkout = new checkoutPage(page);
+  const checkout = new CheckoutPage(page);
   const summaryPage = new SummaryPage(page);
   
   const itemsArr: string[] = [

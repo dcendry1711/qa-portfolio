@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
-import { InventoryPage } from "../pages/productsList.page";
+import { InventoryPage } from "../pages/inventory.page";
 import { userLoginData } from "../data/loginData.data";
 
 test.describe("Login test cases - sauceDemo", () => {
