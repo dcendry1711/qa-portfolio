@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class InventoryPage {
   
@@ -11,6 +11,14 @@ export class InventoryPage {
   removeFromCartSauceLabsBikeLightBtnOnInventoryPage: Locator;
   moveToCart: Locator;
   shoppingCartBadge: Locator;
+
+  async fullAddToCartFlow() {
+    await this.addToCartSauceLabsBackpackOnInventoryPage.click();
+    await this.addToCartSauceLabsBoltTShirtOnInventoryPage.click();
+    await this.addToCartSauceLabsBikeLightOnInventoryPage.click();
+    await this.moveToCart.click();
+    await expect(this.page).toHaveURL("/cart.html");
+  }
 
   async addSingleProductToCart() {
     await this.addToCartSauceLabsBackpackOnInventoryPage.click();
