@@ -17,47 +17,109 @@ test.describe("Checkout Functionality", () => {
     inventoryPage = new InventoryPage(page);
     cartPage = new CartPage(page);
     checkoutPage = new CheckoutPage(page);
-    await loginPage.fullLoginFlow(
-      userLoginData.userName,
-      userLoginData.password,
-    );
+    await loginPage.fullLoginFlow(userLoginData.userName,userLoginData.password);
     await inventoryPage.fullAddToCartFlow();
-    await expect(page).toHaveURL(/cart.html/);
     await cartPage.moveToCheckout();
   });
 
   test("TC01 - Succesfull checkout process", async ({ page }) => {
-    await expect(page).toHaveURL(/checkout-step-one.html/);
-    await expect(checkoutPage.checkoutHeaderTitle).toHaveText(
-      "Checkout: Your Information",
-    );
-    await checkoutPage.fillCheckoutForm(
-      checkoutFormData.firstName,
-      checkoutFormData.lastName,
-      checkoutFormData.postalCode,
-    );
-    await checkoutPage.continueCheckout();
-    await expect(page).toHaveURL(/checkout-step-two.html/);
-    await expect(checkoutPage.checkoutHeaderTitle).toHaveText(
-      "Checkout: Overview",
-    );
-    await expect(checkoutPage.subtotalPrice).toHaveText("Item total: $55.97");
-    await expect(checkoutPage.taxPrice).toHaveText("Tax: $4.48");
-    await expect(checkoutPage.totalPrice).toHaveText("Total: $60.45");
-    await checkoutPage.finishCheckout();
-    await expect(page).toHaveURL(/checkout-complete.html/);
-    await expect(checkoutPage.checkoutHeaderTitle).toHaveText(
-      "Checkout: Complete!",
-    );
-    await expect(checkoutPage.tickIcon).toBeVisible();
-    await expect(checkoutPage.completeHeader).toHaveText(
-      "Thank you for your order!",
-    );
-    await expect(checkoutPage.completeParagraph).toContainText(
-      "Your order has been dispatched",
-    );
-    await expect(checkoutPage.backHomeBtn).toBeVisible();
-    await checkoutPage.backToHome();
-    await expect(page).toHaveURL(/inventory.html/);
+    await checkoutPage.checkoutPageStepOne();
+    await checkoutPage.checkoutPageStepTwo();
+    await checkoutPage.finishCheckoutProcess();
   });
+
+  test("TC02 - checkout form with empty first name field", async ({ page }) => {
+    const emptyFirstName = "";
+    const errorMsgTxt = "Error: First Name is required";
+    
+    await checkoutPage.fillCheckoutForm(emptyFirstName,checkoutFormData.lastName,checkoutFormData.postalCode);
+    await checkoutPage.continueCheckout();
+    await expect(checkoutPage.errorMsg).toBeVisible();
+    await expect(checkoutPage.errorMsg).toHaveText(errorMsgTxt);
+  })
+
+  test("TC03 - checkout form with empty last name field", async ({ page }) => {
+    const emptyLastName = "";
+    const errorMsgTxt = "Error: Last Name is required";
+
+    await checkoutPage.fillCheckoutForm(checkoutFormData.firstName,emptyLastName,checkoutFormData.postalCode);
+    await checkoutPage.continueCheckout();
+    await expect(checkoutPage.errorMsg).toBeVisible();
+    await expect(checkoutPage.errorMsg).toHaveText(errorMsgTxt);
+  })
+
+  test("TC04 - checkout form with empty postal code field", async ({ page }) => {
+    const emptyPostalCode = "";
+    const errorMsgTxt = "Error: Postal Code is required";
+
+    await checkoutPage.fillCheckoutForm(checkoutFormData.firstName,checkoutFormData.lastName,emptyPostalCode);
+    await checkoutPage.continueCheckout();
+    await expect(checkoutPage.errorMsg).toBeVisible();
+    await expect(checkoutPage.errorMsg).toHaveText(errorMsgTxt);
+  })
+
+  test("TC05 - cancel checkout form from checkout step one", async ({ page }) => {
+    await checkoutPage.cancelCheckoutBtn.click();
+    await expect(page).toHaveURL(/cart.html/);
+  })
+
+  test("TC06 - navigate back from overview page to checkout step one", async ({ page }) => {
+    await checkoutPage.checkoutPageStepOne();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Overview");
+    await page.goBack();
+    await expect(page).toHaveURL(/checkout-step-one.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Your Information");
+  })
+
+  test("TC07 - verify products in checkout overview page", async ({ page }) => {
+    await checkoutPage.checkoutPageStepOne();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Overview");
+    await checkoutPage.validateProductsInOverviewPage();
+  })
+
+  test("TC08 - verify prices in checkout overview page", async ({ page }) => {
+    await checkoutPage.checkoutPageStepOne();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await checkoutPage.validatePricesInOverviewPage();
+  })
+
+  test("TC09 - continue button funcionality on checkout step one", async ({ page }) => {
+    await checkoutPage.checkoutPageStepOne();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Overview");
+  })
+
+  test("TC10 - finish button funcionality on checkout overview page", async ({ page }) => {
+    await checkoutPage.checkoutPageStepOne();
+    await checkoutPage.checkoutPageStepTwo();
+    await expect(page).toHaveURL(/checkout-complete.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Complete!");
+  })
+
+  test("TC11 - refresh during checkout process", async ({ page }) => {
+    await checkoutPage.checkoutPageStepOne();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Overview");
+    await expect(checkoutPage.subtotalPrice).toHaveText("Item total: $55.97");
+    await page.reload();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Overview");
+    await expect(checkoutPage.subtotalPrice).toHaveText("Item total: $55.97");
+  })
+
+  test("TC12 - browser navigation during checkout process", async ({ page }) => {
+    await checkoutPage.checkoutPageStepOne();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Overview");
+    await expect(checkoutPage.subtotalPrice).toHaveText("Item total: $55.97");
+    await page.goBack();
+    await expect(page).toHaveURL(/checkout-step-one.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Your Information");
+    await page.goForward();
+    await expect(page).toHaveURL(/checkout-step-two.html/);
+    await expect(checkoutPage.checkoutHeaderTitle).toHaveText("Checkout: Overview");
+    await expect(checkoutPage.subtotalPrice).toHaveText("Item total: $55.97");
+  })
 });
