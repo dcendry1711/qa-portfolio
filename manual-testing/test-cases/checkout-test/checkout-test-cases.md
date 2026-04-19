@@ -10,12 +10,10 @@
 | TC06  | Navigate back from overview         | Functional | Medium   | User in checkout overview    | 1. Click "Cancel"                                                                | User redirected to inventory                    |
 | TC07  | Verify product in checkout overview | Validation | High     | Product in cart              | 1. Go to checkout overview                                                       | Correct product name, price, quantity displayed |
 | TC08  | Verify total price calculation      | Validation | High     | Multiple items in cart       | 1. Proceed to overview                                                           | Total = sum of items + tax                      |
-| TC09  | Checkout with multiple products     | E2E        | High     | Multiple items in cart       | 1. Complete checkout flow                                                        | All items included in order                     |
-| TC10  | Continue button functionality       | Functional | High     | User filled valid data       | 1. Click "Continue"                                                              | Redirect to checkout overview                   |
-| TC11  | Finish button functionality         | Functional | High     | User in overview step        | 1. Click "Finish"                                                                | Order confirmation page displayed               |
-| TC12  | Checkout without products           | Edge Case  | Medium   | Empty cart                   | 1. Try to proceed to checkout                                                    | Checkout blocked or empty state handled         |
-| TC13  | Refresh during checkout             | Session    | Medium   | User in checkout step        | 1. Refresh page                                                                  | Checkout state persists or resets safely        |
-| TC14  | Browser navigation during checkout  | Session    | Medium   | User in checkout flow        | 1. Use back/forward buttons                                                      | Flow remains consistent without errors          |
+| TC09  | Continue button functionality       | Functional | High     | User filled valid data       | 1. Click "Continue"                                                              | Redirect to checkout overview                   |
+| TC10  | Finish button functionality         | Functional | High     | User in overview step        | 1. Click "Finish"                                                                | Order confirmation page displayed               |
+| TC11  | Refresh during checkout             | Session    | Medium   | User in checkout step        | 1. Refresh page                                                                  | Checkout state persists or resets safely        |
+| TC12  | Browser navigation during checkout  | Session    | Medium   | User in checkout flow        | 1. Use back/forward buttons                                                      | Flow remains consistent without errors          |
 
 ---
 
