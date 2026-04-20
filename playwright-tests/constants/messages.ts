@@ -8,3 +8,8 @@ export const errorMessages = {
   LAST_NAME_REQUIRED: "Error: Last Name is required",
   POSTAL_CODE_REQUIRED: "Error: Postal Code is required"
 };
+
+export const successMessages = {
+  ORDER_SUCCESS: "Thank you for your order!",
+  
+};
