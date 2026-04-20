@@ -1,18 +1,12 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../fixtures/e2e.fixture";
 import { userLoginData } from "../data/loginData.data";
 import { checkoutFormData } from "../data/checkoutForm.data";
-import { LoginPage } from "../pages/login.page";
-import { InventoryPage } from "../pages/inventory.page";
-import { CartPage } from "../pages/cart.page";
-import { CheckoutPage } from "../pages/checkout.page";
-import { SummaryPage } from "../pages/summary.page";
+import { successMessages } from "../constants/messages";
 
-test("E2E 01 - complete order process", async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
-  const cartPage = new CartPage(page);
-  const checkout = new CheckoutPage(page);
-  const summaryPage = new SummaryPage(page);
+const VALID_USERNAME = userLoginData.userName;
+const VALID_PASSWORD = userLoginData.password;
+
+test("E2E 01 - complete order process", async ({ loginPage, inventoryPage, cartPage, checkoutPage, summaryPage }) => {
   
   const itemsArr: string[] = [
     "Sauce Labs Backpack",
@@ -21,10 +15,9 @@ test("E2E 01 - complete order process", async ({ page }) => {
   ];
   
   const removedItem = "Sauce Labs Backpack";
-  const summaryMsg = "Thank you for your order!";
   
   await loginPage.navigateToLoginPage();
-  await loginPage.login(userLoginData.userName, userLoginData.password);
+  await loginPage.login(VALID_USERNAME, VALID_PASSWORD);
   await expect(inventoryPage.siteHeader).toBeVisible();
 
   await inventoryPage.add3ProductsToCart();
@@ -35,17 +28,16 @@ test("E2E 01 - complete order process", async ({ page }) => {
   await cartPage.removeBackpackFromCartOnCartPage();
   await expect(cartPage.cartList).not.toContainText(removedItem);
   await cartPage.moveToCheckout();
-  await expect(checkout.checkoutContainer).toBeVisible();
+  await expect(checkoutPage.checkoutContainer).toBeVisible();
 
-  await checkout.fillCheckoutForm(
+  await checkoutPage.fillCheckoutForm(
     checkoutFormData.firstName,
     checkoutFormData.lastName,
     checkoutFormData.postalCode,
   );
-  await checkout.continueCheckout();
-  await checkout.finishCheckout();
+  await checkoutPage.continueCheckout();
+  await checkoutPage.finishCheckout();
 
-  await expect(summaryPage.summaryPageHeader).toBeVisible();
-  await expect(summaryPage.summaryPageHeader).toHaveText(summaryMsg);
+  await expect(summaryPage.summaryPageHeader).toHaveText(successMessages.ORDER_SUCCESS);
   await summaryPage.closeSummary();
 });
