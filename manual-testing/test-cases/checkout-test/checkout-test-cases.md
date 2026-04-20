@@ -23,3 +23,4 @@
 * Verify consistency between cart and checkout overview
 * Test across different browsers (Chrome, Firefox)
 * Pay attention to error messages and user guidance
+* Use demo site https://www.saucedemo.com/ for reference
