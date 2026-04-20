@@ -23,3 +23,4 @@
 
 - Include screenshots for each action
 - Check behavior on different browsers
+- Use demo site https://www.saucedemo.com/ for reference
