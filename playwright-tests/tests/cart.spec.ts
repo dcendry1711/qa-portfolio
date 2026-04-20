@@ -1,23 +1,18 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/login.page";
+import { test, expect } from "../fixtures/cart.fixture";
 import { userLoginData } from "../data/loginData.data";
-import { InventoryPage } from "../pages/inventory.page";
-import { CartPage } from "../pages/cart.page";
+import { URLS } from "../constants/urls";
+
+const VALID_USERNAME = userLoginData.userName;
+const VALID_PASSWORD = userLoginData.password;
 
 test.describe("Cart Functionality", () => {
-  let loginPage: LoginPage;
-  let inventoryPage: InventoryPage;
-  let cartPage: CartPage;
 
-  test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
-    inventoryPage = new InventoryPage(page);
-    cartPage = new CartPage(page);
-    await loginPage.fullLoginFlow(userLoginData.userName, userLoginData.password);
+  test.beforeEach(async ({ loginPage, inventoryPage }) => {
+    await loginPage.fullLoginFlow(VALID_USERNAME, VALID_PASSWORD);
     await expect(inventoryPage.siteHeader).toBeVisible();
   });
 
-  test("TC01 - Add product to cart", async ({}) => {
+  test("TC01 - Add product to cart", async ({ inventoryPage, cartPage }) => {
 
     await inventoryPage.addSingleProductToCart();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
@@ -25,7 +20,7 @@ test.describe("Cart Functionality", () => {
     await expect(cartPage.cartList).toContainText("Sauce Labs Backpack");
   });
 
-  test("TC02 - Add multiple products to cart", async ({}) => {
+  test("TC02 - Add multiple products to cart", async ({ inventoryPage, cartPage }) => {
 
     const orderedItems = [
       "Sauce Labs Backpack",
@@ -42,14 +37,14 @@ test.describe("Cart Functionality", () => {
     });
   });
 
-  test("TC03 - Remove product from inventory page", async ({}) => {
+  test("TC03 - Remove product from inventory page", async ({ inventoryPage }) => {
     await inventoryPage.addSingleProductToCart();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.removeFromCartSauceLabsBackpackBtnOnInventoryPage.click();
     await expect(inventoryPage.shoppingCartBadge).toBeHidden();
   });
 
-  test("TC04 - Remove product from cart page", async ({}) => {
+  test("TC04 - Remove product from cart page", async ({ inventoryPage, cartPage }) => {
     const orderedItem = "Sauce Labs Backpack";
 
     await inventoryPage.addSingleProductToCart();
@@ -61,12 +56,12 @@ test.describe("Cart Functionality", () => {
     await expect(inventoryPage.shoppingCartBadge).toBeHidden();
   });
 
-  test("TC05 - navigate to cart page", async ({ page }) => {
+  test("TC05 - navigate to cart page", async ({ page, inventoryPage }) => {
     await inventoryPage.moveToCartPage();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
   });
 
-  test("TC06 - Cart badge update", async ({}) => {
+  test("TC06 - Cart badge update", async ({ inventoryPage }) => {
     await inventoryPage.addToCartSauceLabsBackpackOnInventoryPage.click();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.addToCartSauceLabsBoltTShirtOnInventoryPage.click();
@@ -81,70 +76,70 @@ test.describe("Cart Functionality", () => {
     await expect(inventoryPage.shoppingCartBadge).toBeHidden();
   });
 
-  test("TC07 - Cart persistence after navigation", async ({ page }) => {
+  test("TC07 - Cart persistence after navigation", async ({ page, inventoryPage }) => {
     await inventoryPage.add3ProductsToCart();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("3");
     await inventoryPage.moveToCartPage();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
     await page.goBack();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("3");
   })
 
-  test("TC08 - Button state change after adding to cart", async ({}) => {
+  test("TC08 - Button state change after adding to cart", async ({ inventoryPage }) => {
     await expect(inventoryPage.addToCartSauceLabsBackpackOnInventoryPage).toHaveText("Add to cart");
     await inventoryPage.addToCartSauceLabsBackpackOnInventoryPage.click();
     await expect(inventoryPage.removeFromCartSauceLabsBackpackBtnOnInventoryPage).toHaveText("Remove");
   })
 
-  test("TC09 - Cart icon visibility", async ({}) => {
+  test("TC09 - Cart icon visibility", async ({ inventoryPage }) => {
     await expect(inventoryPage.moveToCart).toBeVisible();
   })
 
-  test("TC10 - continue shopping button", async ({ page }) => {
+  test("TC10 - continue shopping button", async ({ page, inventoryPage, cartPage }) => {
     await inventoryPage.addSingleProductToCart();
     await inventoryPage.moveToCartPage();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
     await expect(cartPage.continueShoppingBtn).toBeVisible();
     await cartPage.continueShopping();
     await expect(inventoryPage.siteHeader).toBeVisible();
-    await expect(page).toHaveURL(/inventory.html/);
+    await expect(page).toHaveURL(URLS.INVENTORY_URL);
   })
 
-  test("TC11 - checkout button", async ({ page }) => {
+  test("TC11 - checkout button", async ({ page, inventoryPage, cartPage }) => {
     await inventoryPage.addSingleProductToCart();
     await inventoryPage.moveToCartPage();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
     await expect(cartPage.checkoutBtn).toBeVisible();
     await cartPage.moveToCheckout();
   })
 
-  test("TC12 - Refresh cart page", async ({ page }) => {
+  test("TC12 - Refresh cart page", async ({ page, inventoryPage, cartPage }) => {
     const orderedItem = "Sauce Labs Backpack";
 
     await inventoryPage.addSingleProductToCart();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
     await page.reload();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
     await expect(cartPage.cartList).toContainText(orderedItem);
   })
 
-  test("TC13 - Browser back/forward navigation", async ({ page }) => {
+  test("TC13 - Browser back/forward navigation", async ({ page, inventoryPage, cartPage }) => {
     const orderedItem = "Sauce Labs Backpack";
 
     await inventoryPage.addSingleProductToCart();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
     await page.goBack();
-    await expect(page).toHaveURL(/inventory.html/);
+    await expect(page).toHaveURL(URLS.INVENTORY_URL);
     await page.goForward();
-    await expect(page).toHaveURL(/cart.html/);
+    await expect(page).toHaveURL(URLS.CART_URL);
     await expect(cartPage.cartList).toContainText(orderedItem);
   })
 
-  test("TC14 - Add, remove, and re-add product", async ({}) => {
+  test("TC14 - Add, remove, and re-add product", async ({ inventoryPage, cartPage }) => {
     const orderedItem = "Sauce Labs Backpack";
 
     await inventoryPage.addSingleProductToCart();
