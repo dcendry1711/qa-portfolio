@@ -108,3 +108,8 @@ Automate this flow as a single E2E test:
 ## 🧠 Pro Tip
 
 In real projects, this test should be part of a **smoke suite**, executed after every deployment to validate that the core business flow is not broken.
+
+---
+
+## Notes
+- Use demo site https://www.saucedemo.com/ for reference
