@@ -46,4 +46,11 @@ test.describe("Products API", () => {
 
     checkResponseStatus(response, 200)
   })
+
+  test("TC05 - Get non existing product", async({fS}) => {
+    const nonExistProductId = 9999;
+    const response = await fS.get(`/products/${nonExistProductId}`)
+
+    checkResponseStatus(response,200) //In this test-case API should return status code 404 (not found)
+  })
 });
