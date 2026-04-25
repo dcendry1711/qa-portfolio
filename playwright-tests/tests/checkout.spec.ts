@@ -1,4 +1,4 @@
-import { expect, test } from "../fixtures/checkout.fixture";
+import { expect, test } from "../fixtures/sauceDemo.fixture";
 import { userLoginData } from "../data/loginData.data";
 import { checkoutFormData } from "../data/checkoutForm.data";
 import { URLS } from "../constants/urls";

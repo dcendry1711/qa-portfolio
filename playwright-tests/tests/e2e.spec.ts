@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/e2e.fixture";
+import { test, expect } from "../fixtures/sauceDemo.fixture";
 import { userLoginData } from "../data/loginData.data";
 import { checkoutFormData } from "../data/checkoutForm.data";
 import { successMessages } from "../constants/messages";
