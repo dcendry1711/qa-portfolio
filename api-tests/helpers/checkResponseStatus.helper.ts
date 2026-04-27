@@ -4,7 +4,5 @@ export function checkResponseStatus(response: APIResponse, expectedStatus: numbe
   const status = response.status();
   if (status !== expectedStatus) {
     throw new Error(`Expected status ${expectedStatus}, but got ${status}`);
-  } else {
-    console.log(`Status ${status} is as expected.`);
-  }
+  } 
 }
