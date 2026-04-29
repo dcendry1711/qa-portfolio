@@ -133,9 +133,9 @@ This table links manual test cases with automated Playwright tests.
 | ------------- | -------- | ------------------------- | ------------------- | ------ |
 | LOGIN-TC01    | Login    | Successful login          | login.spec.ts       | ✔      |
 | LOGIN-TC02    | Login    | Invalid login             | login.spec.ts       | ✔      |
-| LOGIN-TC03    | Login    | Empty fields validation   | login.spec.ts       | ✔      |
+| LOGIN-TC06    | Login    | Empty fields validation   | login.spec.ts       | ✔      |
 | CART-TC01     | Cart     | Add product to cart       | cart.spec.ts        | ✔      |
-| CART-TC02     | Cart     | Remove product from cart  | cart.spec.ts        | ✔      |
+| CART-TC04     | Cart     | Remove product from cart  | cart.spec.ts        | ✔      |
 | E2E-TC01 | Checkout | Successful checkout (E2E) | e2e.spec.ts         | ✔      |
 
 ---
