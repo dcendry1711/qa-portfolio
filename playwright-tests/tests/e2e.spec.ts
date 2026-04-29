@@ -6,8 +6,8 @@ import { successMessages } from "../constants/messages";
 const VALID_USERNAME = userLoginData.userName;
 const VALID_PASSWORD = userLoginData.password;
 
-//TC01 - Successfull checkout 
-test("TC01 - user can complete purchase", async ({ loginPage, inventoryPage, cartPage, checkoutPage, summaryPage }) => {
+//E2E-TC01 - Successfull order process
+test("E2E-TC01 - user can complete purchase", async ({ loginPage, inventoryPage, cartPage, checkoutPage, summaryPage }) => {
   
   const itemsArr: string[] = [
     "Sauce Labs Backpack",
