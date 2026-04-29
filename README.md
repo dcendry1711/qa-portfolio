@@ -124,3 +124,24 @@ This table shows how different testing layers cover application features.
 * API tests validate backend data and responses
 
 * Some features are tested only on specific layers by design
+
+## 🔍 Traceability Matrix
+
+This table links manual test cases with automated Playwright tests.
+
+| Test Case ID  | Feature  | Description               | Automated Test File | Status |
+| ------------- | -------- | ------------------------- | ------------------- | ------ |
+| LOGIN-TC01    | Login    | Successful login          | login.spec.ts       | ✔      |
+| LOGIN-TC02    | Login    | Invalid login             | login.spec.ts       | ✔      |
+| LOGIN-TC03    | Login    | Empty fields validation   | login.spec.ts       | ✔      |
+| CART-TC01     | Cart     | Add product to cart       | cart.spec.ts        | ✔      |
+| CART-TC02     | Cart     | Remove product from cart  | cart.spec.ts        | ✔      |
+| E2E-TC01 | Checkout | Successful checkout (E2E) | e2e.spec.ts         | ✔      |
+
+---
+
+### 🧠 Notes
+
+* Test cases use feature-based prefixes (LOGIN, CART, CHECKOUT)
+* Each automated test is directly mapped to a manual test case
+* Ensures clear traceability between manual and automated testing
