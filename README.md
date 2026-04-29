@@ -7,6 +7,19 @@ Focused on UI and API testing, as well as writing clean, maintainable test code.
 
 ---
 
+## 🚀 Why This Project?
+
+This portfolio demonstrates a complete QA approach:
+
+* Designing manual test cases
+* Automating UI tests using Playwright
+* Testing REST APIs
+* Ensuring traceability between test cases and automation
+
+The goal is to show how testing works end-to-end in a real project.
+
+---
+
 ## 🛠 Skills
 
 * Manual Testing
@@ -17,12 +30,24 @@ Focused on UI and API testing, as well as writing clean, maintainable test code.
 
 ---
 
+## 🔄 Example Test Flow
+
+Login → Add to cart → Checkout → Order confirmation
+
+This flow is covered across:
+
+* Manual test cases
+* UI automation (Playwright)
+* Test coverage mapping
+
+---
+
 ## 📁 Projects
 
 ### 🔍 Manual Testing
 
 Contains test cases, bug reports, checklists, and a test plan.
-Demonstrates my approach to test design and exploratory testing.
+Demonstrates test design and exploratory testing.
 
 ➡️ `./manual-testing`
 
@@ -35,7 +60,7 @@ Automated UI and API tests built with Playwright:
 * Page Object Model (POM)
 * Custom fixtures
 * API testing
-* Mocking
+* Traceability with manual test cases
 
 ➡️ `./playwright-tests`
 
@@ -55,7 +80,7 @@ REST API testing project covering:
 
 ## ▶️ How to Run Playwright Tests
 
-```bash id="runplay"
+```bash id="runfinal"
 cd playwright-tests
 npm install
 npx playwright test
@@ -65,9 +90,7 @@ npx playwright test
 
 ## 📊 Reports
 
-After running tests:
-
-```bash id="reportplay"
+```bash id="reportfinal"
 npx playwright show-report
 ```
 
@@ -99,35 +122,17 @@ npx playwright show-report
 
 ## 🔗 Test Coverage Mapping
 
-This table shows how different testing layers cover application features.
-
-| Feature        | Manual Tests | UI Automation (Playwright) | API Tests |
-| -------------- | ------------ | -------------------------- | --------- |
-| Login          | ✔            | ✔                          | ❌         |
-| Products       | ✔            | ❌                          | ✔         |
-| Cart           | ✔            | ✔                          | ❌         |
-| Checkout       | ✔            | ✔                          | ❌         |
-| API Validation | ❌            | ✔                          | ✔         |
+| Feature        | Manual Tests | UI Automation | API Tests |
+| -------------- | ------------ | ------------- | --------- |
+| Login          | ✔            | ✔             | ❌         |
+| Products       | ✔            | ❌             | ✔         |
+| Cart           | ✔            | ✔             | ❌         |
+| Checkout       | ✔            | ✔             | ❌         |
+| API Validation | ❌            | ✔             | ✔         |
 
 ---
 
-### 🧠 Notes
-
-* ✔ = covered
-
-* ❌ = not covered
-
-* Manual tests define full test scenarios and edge cases
-
-* UI automation covers critical user flows (E2E)
-
-* API tests validate backend data and responses
-
-* Some features are tested only on specific layers by design
-
 ## 🔍 Traceability Matrix
-
-This table links manual test cases with automated Playwright tests.
 
 | Test Case ID  | Feature  | Description               | Automated Test File | Status |
 | ------------- | -------- | ------------------------- | ------------------- | ------ |
@@ -140,8 +145,18 @@ This table links manual test cases with automated Playwright tests.
 
 ---
 
-### 🧠 Notes
+## 💡 What I Bring
 
-* Test cases use feature-based prefixes (LOGIN, CART, CHECKOUT)
-* Each automated test is directly mapped to a manual test case
-* Ensures clear traceability between manual and automated testing
+* End-to-end understanding of QA process
+* Ability to connect manual testing with automation
+* Clean and maintainable test code
+* Focus on real-world testing scenarios
+
+---
+
+## 📚 What I Learned
+
+* Designing effective test cases
+* Building automation frameworks with Playwright
+* API testing and validation
+* Creating structured QA projects
