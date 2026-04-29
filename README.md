@@ -55,7 +55,7 @@ REST API testing project covering:
 
 ## ▶️ How to Run Playwright Tests
 
-```bash
+```bash id="runplay"
 cd playwright-tests
 npm install
 npx playwright test
@@ -67,7 +67,7 @@ npx playwright test
 
 After running tests:
 
-```bash
+```bash id="reportplay"
 npx playwright show-report
 ```
 
@@ -94,3 +94,33 @@ npx playwright show-report
 
 ![Failure 1](./playwright-tests/evidence/test-failure1.png)
 ![Failure 2](./playwright-tests/evidence/test-failure2.png)
+
+---
+
+## 🔗 Test Coverage Mapping
+
+This table shows how different testing layers cover application features.
+
+| Feature        | Manual Tests | UI Automation (Playwright) | API Tests |
+| -------------- | ------------ | -------------------------- | --------- |
+| Login          | ✔            | ✔                          | ❌         |
+| Products       | ✔            | ❌                          | ✔         |
+| Cart           | ✔            | ✔                          | ❌         |
+| Checkout       | ✔            | ✔                          | ❌         |
+| API Validation | ❌            | ✔                          | ✔         |
+
+---
+
+### 🧠 Notes
+
+* ✔ = covered
+
+* ❌ = not covered
+
+* Manual tests define full test scenarios and edge cases
+
+* UI automation covers critical user flows (E2E)
+
+* API tests validate backend data and responses
+
+* Some features are tested only on specific layers by design
