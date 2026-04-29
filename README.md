@@ -70,3 +70,27 @@ After running tests:
 ```bash
 npx playwright show-report
 ```
+
+---
+
+## 📸 Test Execution Evidence
+
+### 🔹 Playwright HTML Report
+
+![Report 1](./playwright-tests/evidence/report1.png)
+![Report 2](./playwright-tests/evidence/report2.png)
+![Report 3](./playwright-tests/evidence/report3.png)
+![Report 4](./playwright-tests/evidence/report4.png)
+
+---
+
+### ✅ Successful Test (Checkout Flow)
+
+![Success](./playwright-tests/evidence/test-success.png)
+
+---
+
+### ❌ Failed Test Example
+
+![Failure 1](./playwright-tests/evidence/test-failure1.png)
+![Failure 2](./playwright-tests/evidence/test-failure2.png)
