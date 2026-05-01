@@ -15,7 +15,7 @@ test.describe("Cart Functionality", () => {
     inventoryPage,
     cartPage,
   }) => {
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
     await expect(cartPage.cartList).toContainText("Sauce Labs Backpack");
@@ -35,15 +35,15 @@ test.describe("Cart Functionality", () => {
     await expect(inventoryPage.shoppingCartBadge).toHaveText("3");
     await inventoryPage.moveToCartPage();
 
-    orderedItems.forEach(async (item) => {
+    for (const item of orderedItems) {
       await expect(cartPage.cartList).toContainText(item);
-    });
+    }
   });
   //CART-TC03 - Remove product from inventory page
   test("CART-TC03 - Remove product from inventory page", async ({
     inventoryPage,
   }) => {
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.removeFromCartSauceLabsBackpackBtnOnInventoryPage.click();
     await expect(inventoryPage.shoppingCartBadge).toBeHidden();
@@ -55,7 +55,7 @@ test.describe("Cart Functionality", () => {
   }) => {
     const orderedItem = "Sauce Labs Backpack";
 
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
     await expect(cartPage.cartList).toContainText(orderedItem);
@@ -70,17 +70,24 @@ test.describe("Cart Functionality", () => {
   });
   //CART-TC06 - Cart badge update
   test("CART-TC06 - Cart badge update", async ({ inventoryPage }) => {
-    await inventoryPage.addToCartSauceLabsBackpackOnInventoryPage.click();
-    await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
-    await inventoryPage.addToCartSauceLabsBoltTShirtOnInventoryPage.click();
-    await expect(inventoryPage.shoppingCartBadge).toHaveText("2");
-    await inventoryPage.addToCartSauceLabsBikeLightOnInventoryPage.click();
-    await expect(inventoryPage.shoppingCartBadge).toHaveText("3");
-    await inventoryPage.removeFromCartSauceLabsBackpackBtnOnInventoryPage.click();
-    await expect(inventoryPage.shoppingCartBadge).toHaveText("2");
-    await inventoryPage.removeFromCartSauceLabsBoltTShirtBtnOnInventoryPage.click();
-    await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
-    await inventoryPage.removeFromCartSauceLabsBikeLightBtnOnInventoryPage.click();
+    //add products to cart and check badge count after each addition
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
+    await inventoryPage.checkShoppingCartBadgeCount(1);
+
+    await inventoryPage.addToCartSauceLabsBoltTShirtonInventoryPage();
+    await inventoryPage.checkShoppingCartBadgeCount(2);
+
+    await inventoryPage.addToCartSauceLabsBikeLightonInventoryPage();
+    await inventoryPage.checkShoppingCartBadgeCount(3);
+
+    //remove products from cart and check badge count after each removal
+    await inventoryPage.removeBackpackFromCartOnInventoryPage();
+    await inventoryPage.checkShoppingCartBadgeCount(2);
+
+    await inventoryPage.removeBoltTShirtFromCartOnInventoryPage();
+    await inventoryPage.checkShoppingCartBadgeCount(1);
+
+    await inventoryPage.removeBikeLightFromCartOnInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toBeHidden();
   });
   //CART-TC07 - Cart persistence after navigation
@@ -117,7 +124,7 @@ test.describe("Cart Functionality", () => {
     inventoryPage,
     cartPage,
   }) => {
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await inventoryPage.moveToCartPage();
     await expect(page).toHaveURL(URLS.CART_URL);
     await expect(cartPage.continueShoppingBtn).toBeVisible();
@@ -131,11 +138,12 @@ test.describe("Cart Functionality", () => {
     inventoryPage,
     cartPage,
   }) => {
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await inventoryPage.moveToCartPage();
     await expect(page).toHaveURL(URLS.CART_URL);
     await expect(cartPage.checkoutBtn).toBeVisible();
     await cartPage.moveToCheckout();
+    await expect(page).toHaveURL(URLS.CHECKOUT_STEP_ONE_URL);
   });
   //CART-TC12 - Refresh cart page
   test("CART-TC12 - Refresh cart page", async ({
@@ -145,7 +153,7 @@ test.describe("Cart Functionality", () => {
   }) => {
     const orderedItem = "Sauce Labs Backpack";
 
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
     await expect(page).toHaveURL(URLS.CART_URL);
@@ -161,7 +169,7 @@ test.describe("Cart Functionality", () => {
   }) => {
     const orderedItem = "Sauce Labs Backpack";
 
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
     await expect(page).toHaveURL(URLS.CART_URL);
@@ -178,14 +186,14 @@ test.describe("Cart Functionality", () => {
   }) => {
     const orderedItem = "Sauce Labs Backpack";
 
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
     await expect(cartPage.cartList).toContainText(orderedItem);
     await cartPage.removeBackpackFromCartOnCartPage();
     await expect(cartPage.cartList).not.toContainText(orderedItem);
     await cartPage.continueShopping();
-    await inventoryPage.addSingleProductToCart();
+    await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await expect(inventoryPage.shoppingCartBadge).toHaveText("1");
     await inventoryPage.moveToCartPage();
     await expect(cartPage.cartList).toContainText(orderedItem);
