@@ -20,7 +20,7 @@ test.describe("Login test cases - sauceDemo", () => {
   });
 
   //LOGIN-TC02 - Invalid login with empty password
-  test("LOGIN-TC02 - Login with wrong password", async ({ loginPage }) => {
+  test("LOGIN-TC02 - Invalid login with empty password", async ({ loginPage }) => {
     await loginPage.login(VALID_USERNAME, "");
     await expect(loginPage.errorMsg).toHaveText(
       errorMessages.PASSWORD_REQUIRED,
@@ -55,7 +55,7 @@ test.describe("Login test cases - sauceDemo", () => {
     await expect(loginPage.errorMsg).toHaveText(errorMessages.USER_REQUIRED);
   });
   //LOGIN-TC07 - Login with username that has leading/trailing whitespace
-  test("LOGIN-TC07 - Username with leading/trailing whitespace", async ({
+  test("LOGIN-TC07 - Login with username that has leading/trailing whitespace", async ({
     loginPage,
   }) => {
     const userLogin = ` ${VALID_USERNAME} `; // Adding leading and trailing whitespace
@@ -66,7 +66,7 @@ test.describe("Login test cases - sauceDemo", () => {
     );
   });
   //LOGIN-TC08 - Login with password that has leading/trailing whitespace
-  test("LOGIN-TC08 - Password with leading/trailing whitespace", async ({
+  test("LOGIN-TC08 - Login with password that has leading/trailing whitespace", async ({
     loginPage,
   }) => {
     const userPassword = ` ${VALID_PASSWORD} `;
