@@ -64,13 +64,13 @@ test.describe("Cart Functionality", () => {
     await expect(inventoryPage.shoppingCartBadge).toBeHidden();
   });
   //CART-TC05 - Navigate to cart page
-  test("CART-TC05 - navigate to cart page", async ({ page, inventoryPage }) => {
+  test("CART-TC05 - Navigate to cart page", async ({ page, inventoryPage }) => {
     await inventoryPage.moveToCartPage();
     await expect(page).toHaveURL(URLS.CART_URL);
   });
   //CART-TC06 - Cart badge update
   test("CART-TC06 - Cart badge update", async ({ inventoryPage }) => {
-    //add products to cart and check badge count after each addition
+    //Add products to cart and check badge count after each addition
     await inventoryPage.addToCartSauceLabsBackpackonInventoryPage();
     await inventoryPage.checkShoppingCartBadgeCount(1);
 
@@ -80,7 +80,7 @@ test.describe("Cart Functionality", () => {
     await inventoryPage.addToCartSauceLabsBikeLightonInventoryPage();
     await inventoryPage.checkShoppingCartBadgeCount(3);
 
-    //remove products from cart and check badge count after each removal
+    //Remove products from cart and check badge count after each removal
     await inventoryPage.removeBackpackFromCartOnInventoryPage();
     await inventoryPage.checkShoppingCartBadgeCount(2);
 
@@ -119,7 +119,7 @@ test.describe("Cart Functionality", () => {
     await expect(inventoryPage.moveToCart).toBeVisible();
   });
   //CART-TC10 - Continue shopping button
-  test("CART-TC10 - continue shopping button", async ({
+  test("CART-TC10 - Continue shopping button", async ({
     page,
     inventoryPage,
     cartPage,
@@ -133,7 +133,7 @@ test.describe("Cart Functionality", () => {
     await expect(page).toHaveURL(URLS.INVENTORY_URL);
   });
   //CART-TC11 - Checkout button
-  test("CART-TC11 - checkout button", async ({
+  test("CART-TC11 - Checkout button", async ({
     page,
     inventoryPage,
     cartPage,
