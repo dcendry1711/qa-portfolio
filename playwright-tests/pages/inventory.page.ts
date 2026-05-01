@@ -20,8 +20,16 @@ export class InventoryPage {
     await expect(this.page).toHaveURL("/cart.html");
   }
 
-  async addSingleProductToCart() {
+  async addToCartSauceLabsBackpackonInventoryPage() {
     await this.addToCartSauceLabsBackpackOnInventoryPage.click();
+  }
+
+  async addToCartSauceLabsBoltTShirtonInventoryPage() {
+    await this.addToCartSauceLabsBoltTShirtOnInventoryPage.click();
+  }
+
+  async addToCartSauceLabsBikeLightonInventoryPage() {
+    await this.addToCartSauceLabsBikeLightOnInventoryPage.click();
   }
 
   async add3ProductsToCart() {
@@ -40,6 +48,10 @@ export class InventoryPage {
 
   async removeBikeLightFromCartOnInventoryPage() {
     await this.removeFromCartSauceLabsBikeLightBtnOnInventoryPage.click();
+  }
+
+  async checkShoppingCartBadgeCount(expectedCount: number) {
+    await expect(this.shoppingCartBadge).toHaveText(expectedCount.toString());
   }
 
   async moveToCartPage() {
