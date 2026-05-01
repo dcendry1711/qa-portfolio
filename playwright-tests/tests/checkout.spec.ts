@@ -24,8 +24,8 @@ test.describe("Checkout Functionality", () => {
     await checkoutPage.checkoutPageStepTwo();
     await checkoutPage.finishCheckoutProcess();
   });
-  //CHECKOUT-TC02 - checkout form with empty first name field
-  test("CHECKOUT-TC02 - checkout form with empty first name field", async ({
+  //CHECKOUT-TC02 - Checkout form with empty first name field
+  test("CHECKOUT-TC02 - Checkout form with empty first name field", async ({
     checkoutPage,
   }) => {
     await checkoutPage.fillCheckoutForm(
@@ -39,8 +39,8 @@ test.describe("Checkout Functionality", () => {
       errorMessages.FIRST_NAME_REQUIRED,
     );
   });
-  //CHECKOUT-TC03 - checkout form with empty last name field
-  test("CHECKOUT-TC03 - checkout form with empty last name field", async ({
+  //CHECKOUT-TC03 - Checkout form with empty last name field
+  test("CHECKOUT-TC03 - Checkout form with empty last name field", async ({
     checkoutPage,
   }) => {
     await checkoutPage.fillCheckoutForm(
@@ -53,8 +53,8 @@ test.describe("Checkout Functionality", () => {
       errorMessages.LAST_NAME_REQUIRED,
     );
   });
-  //CHECKOUT-TC04 - checkout form with empty postal code field
-  test("CHECKOUT-TC04 - checkout form with empty postal code field", async ({
+  //CHECKOUT-TC04 - Checkout form with empty postal code field
+  test("CHECKOUT-TC04 - Checkout form with empty postal code field", async ({
     checkoutPage,
   }) => {
     await checkoutPage.fillCheckoutForm(
@@ -67,16 +67,16 @@ test.describe("Checkout Functionality", () => {
       errorMessages.POSTAL_CODE_REQUIRED,
     );
   });
-  //CHECKOUT-TC05 - cancel checkout form from checkout step one
-  test("CHECKOUT-TC05 - cancel checkout form from checkout step one", async ({
+  //CHECKOUT-TC05 - Cancel checkout form from checkout step one
+  test("CHECKOUT-TC05 - Cancel checkout form from checkout step one", async ({
     page,
     checkoutPage,
   }) => {
     await checkoutPage.cancelCheckoutBtn.click();
     await expect(page).toHaveURL(URLS.CART_URL);
   });
-  //CHECKOUT-TC06 - navigate back from overview page to checkout step one
-  test("CHECKOUT-TC06 - navigate back from overview page to checkout step one", async ({
+  //CHECKOUT-TC06 - Navigate back from overview page to checkout step one
+  test("CHECKOUT-TC06 - Navigate back from overview page to checkout step one", async ({
     page,
     checkoutPage,
   }) => {
@@ -91,8 +91,8 @@ test.describe("Checkout Functionality", () => {
       "Checkout: Your Information",
     );
   });
-  //CHECKOUT-TC07 - verify products in checkout overview page
-  test("CHECKOUT-TC07 - verify products in checkout overview page", async ({
+  //CHECKOUT-TC07 - Verify products in checkout overview page
+  test("CHECKOUT-TC07 - Verify products in checkout overview page", async ({
     page,
     checkoutPage,
   }) => {
@@ -103,8 +103,8 @@ test.describe("Checkout Functionality", () => {
     );
     await checkoutPage.validateProductsInOverviewPage();
   });
-  //CHECKOUT-TC08 - verify prices in checkout overview page
-  test("CHECKOUT-TC08 - verify prices in checkout overview page", async ({
+  //CHECKOUT-TC08 - Verify prices in checkout overview page
+  test("CHECKOUT-TC08 - Verify prices in checkout overview page", async ({
     page,
     checkoutPage,
   }) => {
@@ -112,8 +112,8 @@ test.describe("Checkout Functionality", () => {
     await expect(page).toHaveURL(URLS.CHECKOUT_STEP_TWO_URL);
     await checkoutPage.validatePricesInOverviewPage();
   });
-  //CHECKOUT-TC09 - continue button funcionality on checkout step one
-  test("CHECKOUT-TC09 - continue button funcionality on checkout step one", async ({
+  //CHECKOUT-TC09 - Continue button funcionality on checkout step one
+  test("CHECKOUT-TC09 - Continue button funcionality on checkout step one", async ({
     page,
     checkoutPage,
   }) => {
@@ -123,8 +123,8 @@ test.describe("Checkout Functionality", () => {
       "Checkout: Overview",
     );
   });
-  //CHECKOUT-TC10 - finish button funcionality on checkout overview page
-  test("CHECKOUT-TC10 - finish button funcionality on checkout overview page", async ({
+  //CHECKOUT-TC10 - Finish button funcionality on checkout overview page
+  test("CHECKOUT-TC10 - Finish button funcionality on checkout overview page", async ({
     page,
     checkoutPage,
   }) => {
@@ -135,8 +135,8 @@ test.describe("Checkout Functionality", () => {
       "Checkout: Complete!",
     );
   });
-  //CHECKOUT-TC11 - refresh page during checkout process
-  test("CHECKOUT-TC11 - refresh during checkout process", async ({
+  //CHECKOUT-TC11 - Refresh page during checkout process
+  test("CHECKOUT-TC11 - Refresh page during checkout process", async ({
     page,
     checkoutPage,
   }) => {
@@ -153,8 +153,8 @@ test.describe("Checkout Functionality", () => {
     );
     await expect(checkoutPage.subtotalPrice).toHaveText("Item total: $55.97");
   });
-  //CHECKOUT-TC12 - browser navigation during checkout process
-  test("CHECKOUT-TC12 - browser navigation during checkout process", async ({
+  //CHECKOUT-TC12 - Browser navigation during checkout process
+  test("CHECKOUT-TC12 - Browser navigation during checkout process", async ({
     page,
     checkoutPage,
   }) => {
