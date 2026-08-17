@@ -5,7 +5,7 @@ import { URLS } from "../constants/urls";
 const VALID_USERNAME = userLoginData.userName;
 const VALID_PASSWORD = userLoginData.password;
 
-test.describe("Cart Functionality", () => {
+test.describe("Cart Functionality v1", () => {
   test.beforeEach(async ({ loginPage, inventoryPage }) => {
     await loginPage.fullLoginFlow(VALID_USERNAME, VALID_PASSWORD);
     await expect(inventoryPage.siteHeader).toBeVisible();
